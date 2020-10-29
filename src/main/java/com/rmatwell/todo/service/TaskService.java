@@ -41,6 +41,13 @@ public class TaskService {
         return "Task \"" + id + "\" deleted";
     }
 
+    public Task updateTask(Task task){
+        Task existingTask = repository.findById(task.getId()).orElse(null);
+        existingTask.setTitle(task.getTitle());
+        existingTask.setDescription(task.getDescription());
+        return repository.save(existingTask);
+    }
+
 
 
 
