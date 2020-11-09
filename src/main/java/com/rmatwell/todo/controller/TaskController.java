@@ -17,7 +17,7 @@ public class TaskController {
     private TaskService service;
 
     @PostMapping("/api/add-task")
-    public Task addTask(@RequestBody Task task){
+    public Task addTask(@RequestBody @ModelAttribute Task task){
         return service.saveTask(task);
     }
 
@@ -32,22 +32,22 @@ public class TaskController {
     }
 
     @GetMapping("/api/task-by-id/{id}")
-    public Task findTaskById(@PathVariable int id){
+    public Task findTaskById(@PathVariable long id){
         return service.getTaskById(id);
     }
 
-    @GetMapping("/api/task-by-title/{title}")
-    public Task findTaskByTitle(@PathVariable String title){
-        return service.getTaskByTitle(title);
+    @GetMapping("/api/task-by-name/{name}")
+    public Task findTaskByTitle(@PathVariable String name){
+        return service.getTaskByName(name);
     }
 
     @PutMapping("/api/update-task")
-    public Task updateTask(@RequestBody Task task){
+    public Task updateTask(@RequestBody @ModelAttribute Task task){
         return service.updateTask(task);
     }
 
     @DeleteMapping("/api/delete-task/{id}")
-    public String deleteTask(@PathVariable int id){
+    public String deleteTask(@PathVariable long id){
         return service.deleteTask(id);
     }
 

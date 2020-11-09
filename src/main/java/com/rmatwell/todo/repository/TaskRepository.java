@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author Richard Atwell
  */
 
-public interface TaskRepository extends JpaRepository<Task, Integer> {
+public interface TaskRepository extends JpaRepository<Task, Long> {
 
-    Task findByTitle(String title);
+    Task findByName(String name);
 }

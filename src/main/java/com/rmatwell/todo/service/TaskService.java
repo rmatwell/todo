@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author Richard Atwell
@@ -28,22 +27,22 @@ public class TaskService {
         return repository.findAll();
     }
 
-    public Task getTaskById(int id){
+    public Task getTaskById(long id){
         return repository.findById(id).orElse(null);
     }
 
-    public Task getTaskByTitle(String title){
-        return repository.findByTitle(title);
+    public Task getTaskByName(String name){
+        return repository.findByName(name);
     }
 
-    public String deleteTask(int id){
+    public String deleteTask(long id){
         repository.deleteById(id);
         return "Task \"" + id + "\" deleted";
     }
 
     public Task updateTask(Task task){
         Task existingTask = repository.findById(task.getId()).orElse(null);
-        existingTask.setTitle(task.getTitle());
+        existingTask.setName(task.getName());
         existingTask.setDescription(task.getDescription());
         return repository.save(existingTask);
     }

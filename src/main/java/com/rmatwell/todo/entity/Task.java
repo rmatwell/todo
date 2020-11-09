@@ -6,17 +6,13 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @author Richard Atwell
  */
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
@@ -25,8 +21,17 @@ import javax.persistence.Table;
 public class Task {
 
     @Id
-    @GeneratedValue
-    private int id;
-    private String title;
-    private String Description;
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private long id;
+    private String name;
+    private String description;
+    private boolean complete;
+
+    public Task(long id, String name, String description){
+        this.name = name;
+        this.description = description;
+        this.complete = false;
+    }
+
+
 }
