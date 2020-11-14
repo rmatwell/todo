@@ -3,6 +3,8 @@ package com.rmatwell.todo.controller;
 import com.rmatwell.todo.entity.Task;
 import com.rmatwell.todo.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,41 +16,36 @@ import java.util.List;
 public class TaskController {
 
     @Autowired
-    private TaskService service;
+    private final TaskService service;
 
-    @PostMapping("/api/add-task")
-    public Task addTask(@RequestBody @ModelAttribute Task task){
+    public TaskController(TaskService service) {
+        this.service = service;
+    }
+
+    @PostMapping("/task")
+    public Task addTask(@RequestBody Task task){
         return service.saveTask(task);
     }
 
-    @PostMapping("/api/add-tasks")
-    public List<Task> addTask(@RequestBody List<Task> tasks){
-        return service.saveTasks(tasks);
-    }
-
-    @GetMapping("/api/tasks")
+    @GetMapping("/task")
     public List<Task> findAllTasks(){
         return service.getTasks();
     }
 
-    @GetMapping("/api/task-by-id/{id}")
+    @GetMapping("/task/{id}")
     public Task findTaskById(@PathVariable long id){
         return service.getTaskById(id);
     }
 
-    @GetMapping("/api/task-by-name/{name}")
-    public Task findTaskByTitle(@PathVariable String name){
-        return service.getTaskByName(name);
+    @PutMapping("/task/{id}")
+    public Task updateTask(@RequestBody Task task, @PathVariable long id){
+        return service.updateTask(task, id);
     }
 
-    @PutMapping("/api/update-task")
-    public Task updateTask(@RequestBody @ModelAttribute Task task){
-        return service.updateTask(task);
-    }
-
-    @DeleteMapping("/api/delete-task/{id}")
-    public String deleteTask(@PathVariable long id){
-        return service.deleteTask(id);
+    @DeleteMapping("/task/{id}")
+    @ResponseStatus(HttpStatus.RESET_CONTENT)
+    public void deleteTask(@PathVariable long id){
+        this.service.deleteTask(id);
     }
 
 }

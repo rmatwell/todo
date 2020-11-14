@@ -14,24 +14,26 @@ import javax.persistence.*;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @Entity
-@Table(name = "TASK_TBL")
 public class Task {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
+
     private String name;
+
     private String description;
+
     private boolean complete;
 
-    public Task(long id, String name, String description){
+    public Task(String name, String description, boolean complete){
         this.name = name;
         this.description = description;
         this.complete = false;
     }
-
 
 }
