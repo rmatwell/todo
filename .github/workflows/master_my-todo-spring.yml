@@ -37,4 +37,4 @@ jobs:
         app-name: 'my-todo-spring'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_0b4790077c614e098c556c83c58739ff }}
-        package: '${{ github.workspace }}/target/*.jar'
+        package: '${{ github.workspace }}/target/app.jar'
