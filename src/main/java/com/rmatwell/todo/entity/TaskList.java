@@ -19,19 +19,16 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-public class Task {
+public class TaskList {
 
     @Id
     @GeneratedValue
-    private UUID id;
-
-    private String content;
-
     private UUID colId;
 
-    public Task(String content, UUID colId){
-        this.content = content;
-        this.colId = colId;
-    }
+    private String name;
+
+    private String boardId;
+
+    private Task[] tasks;
 
 }

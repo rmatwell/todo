@@ -3,15 +3,16 @@ package com.rmatwell.todo.controller;
 import com.rmatwell.todo.entity.Task;
 import com.rmatwell.todo.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author Richard Atwell
  */
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class TaskController {
 
@@ -33,18 +34,18 @@ public class TaskController {
     }
 
     @GetMapping("/task/{id}")
-    public Task findTaskById(@PathVariable long id){
+    public Task findTaskById(@PathVariable UUID id){
         return service.getTaskById(id);
     }
 
     @PutMapping("/task/{id}")
-    public Task updateTask(@RequestBody Task task, @PathVariable long id){
+    public Task updateTask(@RequestBody Task task, @PathVariable UUID id){
         return service.updateTask(task, id);
     }
 
     @DeleteMapping("/task/{id}")
     @ResponseStatus(HttpStatus.RESET_CONTENT)
-    public void deleteTask(@PathVariable long id){
+    public void deleteTask(@PathVariable UUID id){
         this.service.deleteTask(id);
     }
 
