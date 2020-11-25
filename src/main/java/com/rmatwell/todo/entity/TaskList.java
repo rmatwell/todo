@@ -5,9 +5,12 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
+
 
 /**
  * @author Richard Atwell
@@ -19,16 +22,16 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
+@Table(name = "task_lists")
 public class TaskList {
 
     @Id
-    @GeneratedValue
-    private UUID colId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String name;
 
-    private String boardId;
-
-    private Task[] tasks;
+    @OneToMany(mappedBy = "taskList", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Task> tasks;
 
 }

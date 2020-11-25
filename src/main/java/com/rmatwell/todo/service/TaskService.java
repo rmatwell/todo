@@ -27,22 +27,22 @@ public class TaskService {
         return repository.findAll();
     }
 
-    public Task getTaskById(UUID id){
+    public Task getTaskById(Long id){
         Task task = repository.findById(id)
         .orElseThrow(() -> new TaskNotFoundException("Employee not exist with id :" + id));
         return task;
     }
 
-    public String deleteTask(UUID id){
+    public String deleteTask(Long id){
         repository.deleteById(id);
         return "Task \"" + id + "\" deleted";
     }
 
-    public Task updateTask(Task newTask, UUID id) {
+    public Task updateTask(Task newTask, Long id) {
         return repository.findById(id)
                 .map(existingTask -> {
                     existingTask.setContent(newTask.getContent());
-                    existingTask.setColId(newTask.getColId());
+                    existingTask.setTaskList(newTask.getTaskList());
                      return repository.save(existingTask);
                 })
                 .orElseGet(() -> {

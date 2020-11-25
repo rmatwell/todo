@@ -34,18 +34,18 @@ public class TaskController {
     }
 
     @GetMapping("/task/{id}")
-    public Task findTaskById(@PathVariable UUID id){
+    public Task findTaskById(@PathVariable Long id){
         return service.getTaskById(id);
     }
 
     @PutMapping("/task/{id}")
-    public Task updateTask(@RequestBody Task task, @PathVariable UUID id){
+    public Task updateTask(@RequestBody Task task, @PathVariable Long id){
         return service.updateTask(task, id);
     }
 
     @DeleteMapping("/task/{id}")
     @ResponseStatus(HttpStatus.RESET_CONTENT)
-    public void deleteTask(@PathVariable UUID id){
+    public void deleteTask(@PathVariable Long id){
         this.service.deleteTask(id);
     }
 

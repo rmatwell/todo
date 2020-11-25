@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -19,19 +20,17 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
+@Table(name = "tasks")
 public class Task {
 
     @Id
-    @GeneratedValue
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String content;
 
-    private UUID colId;
-
-    public Task(String content, UUID colId){
-        this.content = content;
-        this.colId = colId;
-    }
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "task_list_id", nullable = false)
+    private TaskList taskList;
 
 }
