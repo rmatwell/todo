@@ -22,7 +22,6 @@ public class TaskService {
         return repository.save(task);
     }
 
-
     public List<Task> getTasks(){
         return repository.findAll();
     }
@@ -42,7 +41,7 @@ public class TaskService {
         return repository.findById(id)
                 .map(existingTask -> {
                     existingTask.setContent(newTask.getContent());
-                    existingTask.setTaskList(newTask.getTaskList());
+                    existingTask.setList(newTask.getList());
                      return repository.save(existingTask);
                 })
                 .orElseGet(() -> {

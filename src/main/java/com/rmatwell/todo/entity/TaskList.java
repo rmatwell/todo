@@ -27,11 +27,13 @@ public class TaskList {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "list")
+    private Long list;
 
     private String name;
 
-    @OneToMany(mappedBy = "taskList", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "list")
     private List<Task> tasks;
 
 }
