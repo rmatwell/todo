@@ -26,11 +26,12 @@ import java.util.UUID;
 public class TaskList {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator="system-uuid")
+    @GenericGenerator(name="system-uuid", strategy = "uuid")
     @Column(name = "list")
-    private Long list;
+    private String list;
 
-    private String name;
+    private String title;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "list")

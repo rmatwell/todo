@@ -8,5 +8,5 @@ import java.util.UUID;
 /**
  * @author Richard Atwell
  */
-public interface TaskRepository extends JpaRepository<Task, Long> {
+public interface TaskRepository extends JpaRepository<Task, String> {
 }

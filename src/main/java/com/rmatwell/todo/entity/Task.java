@@ -24,13 +24,14 @@ import java.util.UUID;
 public class Task {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator="system-uuid")
+    @GenericGenerator(name="system-uuid", strategy = "uuid")
     @Column(name = "task_id")
-    private Long id;
+    private String id;
 
     private String content;
 
     @Column(name = "list")
-    private Long list;
+    private String list;
 
 }
