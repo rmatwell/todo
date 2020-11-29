@@ -41,7 +41,7 @@ public class TaskService {
         return repository.findById(id)
                 .map(existingTask -> {
                     existingTask.setContent(newTask.getContent());
-                    existingTask.setList(newTask.getList());
+                    existingTask.setColumn_id(newTask.getColumn_id());
                      return repository.save(existingTask);
                 })
                 .orElseGet(() -> {

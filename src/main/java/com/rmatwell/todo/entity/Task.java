@@ -26,12 +26,12 @@ public class Task {
     @Id
     @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
-    @Column(name = "task_id")
+    @Column(name = "id")
     private String id;
 
     private String content;
 
-    @Column(name = "list")
-    private String list;
+    @Column(name = "column_id")
+    private String column_id;
 
 }

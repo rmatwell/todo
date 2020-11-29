@@ -28,13 +28,13 @@ public class TaskList {
     @Id
     @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
-    @Column(name = "list")
-    private String list;
+    @Column(name = "column_id")
+    private String column_id;
 
     private String title;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "list")
+    @JoinColumn(name = "column_id")
     private List<Task> tasks;
 
 }
