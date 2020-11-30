@@ -26,7 +26,7 @@ public class Task {
     @Id
     @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
-    @Column(name = "id")
+    @Column(name = "task_id")
     private String id;
 
     private String content;

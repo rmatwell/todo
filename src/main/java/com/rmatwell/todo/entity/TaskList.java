@@ -1,5 +1,6 @@
 package com.rmatwell.todo.entity;
 
+import com.sun.xml.internal.bind.v2.model.core.ID;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -29,7 +30,7 @@ public class TaskList {
     @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
     @Column(name = "column_id")
-    private String column_id;
+    private String id;
 
     private String title;
 
